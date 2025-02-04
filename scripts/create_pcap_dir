@@ -4,8 +4,10 @@ set +x
 
 while : ; do
     gcsfuse_ready=$(mount | grep --color=never "${PCAP_MNT} type fuse" | wc -l | tr -d '\n')
-    [[ "${gcsfuse_ready}" == '1' ]] && break
-    echo "{\"severity\":\"WARNING\",\"message\":\"GCS Bucket ${PCAP_GCS_BUCKET} not mounted at ${PCAP_MNT}\",\"sidecar\":\"${APP_SIDECAR}\",\"module\":\"${PROC_NAME}\"}"
+    [[ "${gcsfuse_ready}" == '1' ]] \
+        && echo "{\"severity\":\"INFO\",\"message\":\"GCS Bucket ${PCAP_GCS_BUCKET} is mounted at ${PCAP_MNT}\",\"sidecar\":\"${APP_SIDECAR}\",\"module\":\"${PROC_NAME}\"}" \
+        && break
+    echo "{\"severity\":\"WARNING\",\"message\":\"GCS Bucket ${PCAP_GCS_BUCKET} is not yet mounted at ${PCAP_MNT}, retrying...\",\"sidecar\":\"${APP_SIDECAR}\",\"module\":\"${PROC_NAME}\"}"
     sleep 1
 done
 
