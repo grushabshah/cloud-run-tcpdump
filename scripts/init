@@ -120,7 +120,7 @@ echo "PCAP_RT_ENV=@PCAP_RT_ENV@" >> ${ENV_FILE}
 mkdir -pv ${PCAP_MNT}
 mkdir -pv ${PCAP_TMP}
 
-echo "[INFO] - PCAP files available at: gs://${PCAP_GCS_BUCKET}/${GCS_DIR}"
+echo "[INFO] - PCAP files will be available at: gs://${PCAP_GCS_BUCKET}/${GCS_DIR}"
 
 trap 'kill -TERM $PCAP_PID' TERM INT
 /bin/supervisord --configuration=/tcpdump.conf --env-file=${ENV_FILE} &
