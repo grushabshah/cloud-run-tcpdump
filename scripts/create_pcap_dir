@@ -13,4 +13,4 @@ mount | grep --color=never "${PCAP_MNT} type fuse"
 
 set -x
 
-mkdir -p "${PCAP_DIR}"
+mkdir -pv "${PCAP_DIR}"
