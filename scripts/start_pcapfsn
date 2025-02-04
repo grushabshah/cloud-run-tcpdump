@@ -5,6 +5,7 @@ set +x
 while : ; do
     [[ -d ${PCAP_DIR} ]] && break
     echo "{\"severity\":\"WARNING\",\"message\":\"PCAP files directory is not available: ${PCAP_DIR}\",\"sidecar\":\"${APP_SIDECAR}\",\"module\":\"${PROC_NAME}\"}"
+    mount
     sleep 1
 done
 
